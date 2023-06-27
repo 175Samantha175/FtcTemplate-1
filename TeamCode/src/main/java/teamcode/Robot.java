@@ -21,20 +21,30 @@
  */
 
 package teamcode;
-
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity;
 
 import TrcCommonLib.trclib.TrcDbgTrace;
 import TrcCommonLib.trclib.TrcDigitalInput;
 import TrcCommonLib.trclib.TrcMotor;
+import TrcCommonLib.trclib.TrcPidController;
 import TrcCommonLib.trclib.TrcPose2D;
 import TrcCommonLib.trclib.TrcRobot;
 import TrcCommonLib.trclib.TrcServo;
 import TrcFtcLib.ftclib.FtcDashboard;
+import TrcFtcLib.ftclib.FtcAndroidTone;
 import TrcFtcLib.ftclib.FtcMatchInfo;
 import TrcFtcLib.ftclib.FtcOpMode;
 import TrcFtcLib.ftclib.FtcRevBlinkin;
 import TrcFtcLib.ftclib.FtcRobotBattery;
+
+
+import teamcode.drive.RRTricycleDrive;
+
+import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection.BACK;
+
+
+import java.util.Locale;
 
 /**
  * This class creates the robot object that consists of sensors, indicators, drive base and all the subsystems.
@@ -58,11 +68,14 @@ public class Robot
     //
     public FtcRevBlinkin blinkin;
     public FtcRobotBattery battery;
+    public Intake intake;
+    public Carousel carousel;
     //
     // Subsystems.
     //
-    public RobotDrive robotDrive;
+    public RobotDrive robotDrive = null;
 
+    public RRTricycleDrive rrDrive;
     /**
      * Constructor: Create an instance of the object.
      *
